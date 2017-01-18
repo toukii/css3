@@ -1,0 +1,76 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>animate.css动画演示_dowebok</title>
+    <link rel="stylesheet" href="animate.min.css">
+    <script src="http://7xku3c.com1.z0.glb.clouddn.com/jquery.js"></script>
+</head>
+<body>
+<div id="hello" >Hello</div>
+<div id="world" >World</div>
+</body>
+<script>
+    function addTransitAni(element){
+        var defer = $.Deferred();
+//        $(element).addClass("animated bounceIn");
+        element.transition({
+            transform : "translateX(300px)"
+        },300,"linear", function(){
+            defer.resolve();
+        });
+        return defer;
+    }
+    function addClassAni(element){
+        var defer = $.Deferred();
+//        $(element).addClass("animated bounceInLeft");
+        element.addClass("animated bounceInLeft").on(animationEnd(),function(){
+//            defer.resolve();
+            alert("end");
+        });
+        return defer;
+    }
+    /*addClassAni($("#hello")).then(function () {
+        alert("hello");
+        return addClassAni($("#world"));
+    }).then(function () {
+        alert("end");
+    });*/
+//    document.getElementById("hello").setAttribute("class","animated bounceIn");
+//    document.getElementById("world").setAttribute("class","animated bounceInLeft");
+    /*$(function () {
+       $("#hello").addClass("bounceOut");
+        setTimeout(function () {
+            $("#world").attr("hidden",false);
+            $("#world").addClass("rollIn");
+        },10);
+    });*/
+    $("#hello").addClass("animated bounceInLeft").on("webkitAnimationEnd",function(){
+        $("#world").addClass("animated bomba").on("webkitAnimationEnd",function(){
+//            $div3.addClass("ani_class").on("webkitAnimationEnd",function(){
+                alert("addClass animation end!");
+//            });
+        });
+    });
+</script>
+<style>
+    #hello{
+        -webkit-animation-iteration-count: 1;
+        /*-webkit-animation-iteration-count: infinite;*/
+    }
+    #world{
+        -webkit-animation-iteration-count: 1;
+        /*-webkit-animation-iteration-count: infinite;*/
+        -webkit-animation-delay: 100ms;
+    }
+    /*@-webkit-keyframes bounceInLeft {
+        0% {left:1100px;}
+        30% {left:2100px;}
+        60% {left:1300px;}
+        100% {left:1400px;}
+    }*/
+    /*.animate{*/
+        /*!*-webkit-animation-play-state: running;*!*/
+        /*!*-webkit-animation:fadeIn 2s, float 2s 2s alternate;*!*/
+    /*}*/
+</style>
+</html>
